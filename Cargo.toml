@@ -1,0 +1,14 @@
+[package]
+name = "audio-transcriber"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "transcribe"
+path = "src/main.rs"
+
+[dependencies]
+kalosm = { version = "0.4", features = ["sound"] }
+rodio = "0.19"
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
