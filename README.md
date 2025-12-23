@@ -2,6 +2,21 @@
 
 Local audio transcription using Whisper. Supports Chinese and English.
 
+## How It Works
+
+This tool uses [Kalosm](https://github.com/floneum/floneum), a Rust library for local AI inference, to run OpenAI's Whisper speech recognition model entirely on your machine.
+
+**Key components:**
+- **Whisper model**: `whisper-large-v3-turbo` - OpenAI's multilingual speech recognition model (~3GB), selected in `src/main.rs` via `WhisperSource::large_v3_turbo()`
+- **Kalosm**: Rust wrapper that downloads and runs the model locally using the [Candle](https://github.com/huggingface/candle) ML framework
+- **rodio**: Audio decoding library for reading WAV files
+
+**Flow:**
+1. Load Whisper model (downloaded to `~/.cache/huggingface/` on first run)
+2. Decode audio file to raw samples
+3. Stream audio through Whisper, outputting text chunks in real-time
+4. Save complete transcription to file
+
 ## Prerequisites
 
 1. **Rust**
@@ -45,8 +60,15 @@ cargo run --release -- audio.wav en
 - Prints transcription to console in real-time
 - Saves to `<filename>_transcription.txt`
 
-## Notes
+## Changing the Model
 
-- First run downloads Whisper model (~3GB)
-- Supports WAV format (convert other formats with ffmpeg)
-- Uses `whisper-large-v3-turbo` model for best multilingual results
+Edit `src/main.rs` line 18 to use a different Whisper variant:
+
+```rust
+// Options:
+WhisperSource::tiny_en()      // English only, fastest, ~75MB
+WhisperSource::base_en()      // English only, ~140MB
+WhisperSource::small_en()     // English only, ~460MB
+WhisperSource::large_v3()     // Multilingual, ~3GB
+WhisperSource::large_v3_turbo() // Multilingual, faster, ~3GB (default)
+```
