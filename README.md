@@ -76,3 +76,11 @@ WhisperSource::small_en()     // English only, ~460MB
 WhisperSource::large_v3()     // Multilingual, ~3GB
 WhisperSource::large_v3_turbo() // Multilingual, faster, ~3GB (default)
 ```
+
+## Performance
+
+| Audio Length | Transcription Time | Hardware |
+|--------------|-------------------|----------|
+| 75 min | ~30 min | Apple M1 (CPU) |
+
+*Speed varies by hardware. GPU acceleration available with CUDA.*
