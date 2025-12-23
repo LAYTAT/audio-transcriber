@@ -16,7 +16,7 @@ This tool uses [Kalosm](https://github.com/floneum/floneum), a Rust library for 
 - **rodio**: Audio decoding library for reading WAV files
 
 **Flow:**
-1. Load Whisper model (downloaded to `~/.cache/huggingface/` on first run)
+1. Load Whisper model (automatically downloaded from [HuggingFace](https://huggingface.co/openai/whisper-large-v3-turbo) to `~/.cache/huggingface/` on first run, ~3GB)
 2. Decode audio file to raw samples
 3. Stream audio through Whisper, outputting text chunks in real-time
 4. Save complete transcription to file
