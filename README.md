@@ -2,6 +2,10 @@
 
 Local audio transcription using Whisper. Supports Chinese and English.
 
+## Architecture
+
+![Architecture](architecture.png)
+
 ## How It Works
 
 This tool uses [Kalosm](https://github.com/floneum/floneum), a Rust library for local AI inference, to run OpenAI's Whisper speech recognition model entirely on your machine.
